@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuestionario</title>
+    <link rel="stylesheet" href="{% static 'landing/questionnaire.css' %}">
+</head>
+<body>
+    <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 18px;">
+        <img src="{% static 'landing/logo-small.png' %}" alt="Logo" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 10px;" />
+        <h2 style="font-size: 1.25rem; font-weight: 600; text-align: center; margin-bottom: 8px; color: #222;">Si quieres empezar en ecommerce o escalar tu tienda a cifras altas con nosotros...</h2>
+        <p style="font-size: 1rem; color: #555; text-align: center; margin-bottom: 18px;">mira este video completo y te decimos como hacerlo</p>
+        <!-- Video de Bunny.net: reemplaza YOUR_BUNNY_VIDEO_ID por el ID de tu video -->
+        <div style="width:100%; max-width:420px; aspect-ratio:16/9; margin-bottom: 24px;">
+            <iframe src="https://iframe.mediadelivery.net/embed/YOUR_BUNNY_VIDEO_ID" style="width:100%; height:100%; border:none; border-radius:10px; background:#000;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" allowfullscreen title="Video"></iframe>
+        </div>
+    </div>
+    <div class="container">
+        <h1 style="margin-bottom: 24px;">Rellena el formulario para entrar en OneMoreBusiness</h1>
+        <form method="post" autocomplete="off">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_disponibilidad">Si tu aplicación es aceptada, ¿cuándo estarías disponible para empezar?</label>
+                {{ form.disponibilidad }}
+            </div>
+            <div class="form-group">
+                <label for="id_nombre">Nombre</label>
+                {{ form.nombre }}
+            </div>
+            <div class="form-group">
+                <label for="id_email">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label for="id_objetivo">¿Por qué quieres empezar en el programa?</label>
+                {{ form.objetivo }}
+            </div>
+            <div class="form-group">
+                <label for="id_inversion">¿Cuánto dinero tienes para invertir en tu crecimiento y el de tu nuevo negocio?</label>
+                {{ form.inversion }}
+            </div>
+            <div class="form-group">
+                <label for="id_situacion">Situación actual</label>
+                {{ form.situacion }}
+            </div>
+            <div class="form-group">
+                <label for="id_conseguir">Si cuentas con nuestro acompañamiento durante tres meses, ¿qué te gustaría estar consiguiendo o ganando con tu ecommerce?</label>
+                {{ form.conseguir }}
+            </div>
+            <div class="form-group">
+                <label for="id_tlf">Número de teléfono</label>
+                {{ form.tlf }}
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>
