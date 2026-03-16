@@ -17,4 +17,4 @@ COPY . /app/
 EXPOSE 8000
 
 # Comando para iniciar el servidor de desarrollo
-CMD ["python", "app/manage.py", "runserver", "0.0.0.0:8000"]
+CMD sh -c "python app/manage.py collectstatic --noinput && python app/manage.py runserver 0.0.0.0:8000"
