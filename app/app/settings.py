@@ -39,6 +39,10 @@ ALLOWED_HOSTS = os.getenv(
     'onemorebusiness.com,www.onemorebusiness.com,.up.railway.app,localhost,127.0.0.1'
 ).split(',')
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://onemorebusiness.com",
+    "https://www.onemorebusiness.com",
+]
 
 # Application definition
 
