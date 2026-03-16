@@ -34,7 +34,10 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-7@39d#t5!i#@&@4!!!mb+i*v1m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if os.getenv('ALLOWED_HOSTS') else []
+ALLOWED_HOSTS = os.getenv(
+    'ALLOWED_HOSTS',
+    'onemorebusiness.com,www.onemorebusiness.com,.up.railway.app,localhost,127.0.0.1'
+).split(',')
 
 
 # Application definition
