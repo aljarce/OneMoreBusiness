@@ -54,6 +54,12 @@
             <form method="post" autocomplete="off">
                 {% csrf_token %}
 
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="form-alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+
                 <div class="form-group">
                     <label for="id_disponibilidad">¿Cuándo estarías disponible para empezar?</label>
                     {{ form.disponibilidad }}

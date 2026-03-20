@@ -439,6 +439,16 @@ textarea {
   color: var(--green);
 }
 
+.form-alert {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #e56a6a;
+  border-radius: 10px;
+  background: rgba(229, 106, 106, 0.12);
+  color: #ffd1d1;
+  font-size: 0.95rem;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;

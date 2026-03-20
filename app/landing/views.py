@@ -1,6 +1,7 @@
 import os
 
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.conf import settings
 import requests
 import logging
@@ -48,8 +49,9 @@ def questionnaire_view(request):
 		form = QuestionnaireForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data
-			send_telegram_message(data)
-			return redirect(WHATSAPP_LINK)
+			if send_telegram_message(data):
+				return redirect(WHATSAPP_LINK)
+			messages.error(request, 'No se pudo enviar tu aplicacion. Intentalo de nuevo en unos minutos.')
 	else:
 		form = QuestionnaireForm()
 	return render(request, 'landing/questionnaire.html', {'form': form})
