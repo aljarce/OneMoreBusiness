@@ -7,11 +7,17 @@ import logging
 from .forms import QuestionnaireForm
  # ...existing code...
 
-TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', 'AQUI_TU_TOKEN')
-TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', 'AQUI_TU_CHAT_ID')
 WHATSAPP_LINK = 'https://wa.me/34625144654?text=Quiero%20agendar%20llamada%20para%20entrar%20en%20OneMoreBusiness'  # Cambia por tu enlace
+logger = logging.getLogger(__name__)
 
 def send_telegram_message(data):
+	telegram_bot_token = getattr(settings, 'TELEGRAM_BOT_TOKEN', '')
+	telegram_chat_id = getattr(settings, 'TELEGRAM_CHAT_ID', '')
+
+	if not telegram_bot_token or not telegram_chat_id:
+		logger.error('Faltan TELEGRAM_BOT_TOKEN o TELEGRAM_CHAT_ID en variables de entorno.')
+		return False
+
 	text = (
 		"Nuevo cuestionario recibido:\n"
 		f"Nombre: {data.get('nombre', '')}\n"
@@ -23,13 +29,19 @@ def send_telegram_message(data):
 		f"Disponibilidad: {data.get('disponibilidad', '')}\n"
 		f"Teléfono: {data.get('tlf', '')}"
 	)
-	url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-	payload = {"chat_id": TELEGRAM_CHAT_ID, "text": text}
-	print(f"token: {TELEGRAM_BOT_TOKEN}, chat_id: {TELEGRAM_CHAT_ID}")
+	url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
+	payload = {"chat_id": telegram_chat_id, "text": text}
 	try:
-		response = requests.post(url, data=payload, timeout=5)
+		response = requests.post(url, data=payload, timeout=10)
+		response.raise_for_status()
+		telegram_result = response.json()
+		if not telegram_result.get('ok'):
+			logger.error('Telegram devolvio error: %s', telegram_result)
+			return False
+		return True
 	except Exception as e:
-		print(f"Error enviando mensaje a Telegram: {e}")
+		logger.exception("Error enviando mensaje a Telegram: %s", e)
+		return False
 
 def questionnaire_view(request):
 	if request.method == 'POST':
