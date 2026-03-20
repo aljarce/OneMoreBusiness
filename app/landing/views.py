@@ -33,11 +33,18 @@ def send_telegram_message(data):
 	payload = {"chat_id": telegram_chat_id, "text": text}
 	try:
 		response = requests.post(url, data=payload, timeout=10)
-		response.raise_for_status()
 		telegram_result = response.json()
+		if response.status_code >= 400:
+			logger.error(
+				'Telegram HTTP error. status=%s body=%s',
+				response.status_code,
+				telegram_result,
+			)
+			return False
 		if not telegram_result.get('ok'):
 			logger.error('Telegram devolvio error: %s', telegram_result)
 			return False
+		logger.info('Telegram enviado correctamente para email=%s', data.get('email', ''))
 		return True
 	except Exception as e:
 		logger.exception("Error enviando mensaje a Telegram: %s", e)
@@ -48,8 +55,10 @@ def questionnaire_view(request):
 		form = QuestionnaireForm(request.POST)
 		if form.is_valid():
 			data = form.cleaned_data
+			logger.info('Formulario valido recibido para email=%s', data.get('email', ''))
 			send_telegram_message(data)
 			return redirect(WHATSAPP_LINK)
+		logger.error('Formulario invalido. errores=%s', form.errors.as_json())
 	else:
 		form = QuestionnaireForm()
 	return render(request, 'landing/questionnaire.html', {'form': form})
