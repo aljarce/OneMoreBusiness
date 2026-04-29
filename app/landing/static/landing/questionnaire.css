@@ -182,6 +182,7 @@ body::after {
   padding-top: 56.25%;
   border-radius: 14px;
   overflow: hidden;
+  transform: translateZ(0);
   border: 1.5px solid var(--border);
   box-shadow: 0 0 48px rgba(57, 255, 110, 0.12), 0 24px 64px rgba(0,0,0,0.6);
 }
@@ -203,6 +204,8 @@ body::after {
   border: none;
   display: block;
   background: #000;
+  border-radius: inherit;
+  transform: translateZ(0);
 }
 
 .video-label {
@@ -223,6 +226,20 @@ body::after {
   flex: 1;
   height: 1px;
   background: var(--border);
+}
+
+.video-fallback {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  color: var(--green);
+  font-size: 0.82rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.video-fallback:hover {
+  text-decoration: underline;
 }
 
 /* Container / Form */
@@ -473,6 +490,11 @@ textarea {
 
 /* Responsive */
 @media (max-width: 540px) {
+  .video-wrap {
+    animation: none;
+    opacity: 1;
+  }
+
   .form-card {
     padding: 24px 18px 20px;
   }
