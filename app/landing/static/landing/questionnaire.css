@@ -178,6 +178,8 @@ body::after {
 .video-frame {
   position: relative;
   aspect-ratio: 16/9;
+  height: 0;
+  padding-top: 56.25%;
   border-radius: 14px;
   overflow: hidden;
   border: 1.5px solid var(--border);
@@ -194,6 +196,8 @@ body::after {
 }
 
 .video-frame iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   border: none;
