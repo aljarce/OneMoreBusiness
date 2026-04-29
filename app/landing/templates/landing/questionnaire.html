@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{% static 'landing/questionnaire.css' %}">
 </head>
 <body>
+
     <section class="hero">
         <div class="logo-wrap">
             <img src="{% static 'landing/onemorebusiness_logo.jfif' %}" alt="OneMoreBusiness Logo">
@@ -25,22 +26,25 @@
         </p>
     </section>
 
+    <!-- 🔥 VIDEO CORRECTO -->
     <div class="video-wrap">
-        <div class="video-frame" style="position:relative;padding-top:56.25%;">
+        <div class="video-frame">
             <iframe
                 src="https://iframe.mediadelivery.net/play/589211/1421886e-1564-41ac-8102-cb7eaba9c9a3"
-                loading="lazy"
-                style="border:0;position:absolute;top:0;height:100%;width:100%;"
-                allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;"
+                allow="accelerometer;gyroscope;encrypted-media;picture-in-picture;"
                 allowfullscreen
                 title="Video">
             </iframe>
         </div>
-        <div class="video-label">mira el video antes de aplicar</div>
+
+        <div class="video-label">
+            ▶ Dale al play y míralo completo antes de aplicar
+        </div>
     </div>
 
     <div class="container">
         <div class="form-card">
+
             <div class="form-steps">
                 <div class="step-dot active"></div>
                 <div class="step-dot"></div>
@@ -63,52 +67,56 @@
                 {% endif %}
 
                 <div class="form-group">
-                    <label for="id_disponibilidad">¿Cuándo estarías disponible para empezar?</label>
+                    <label>¿Cuándo estarías disponible para empezar?</label>
                     {{ form.disponibilidad }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_nombre">Nombre</label>
+                    <label>Nombre</label>
                     {{ form.nombre }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_email">Email</label>
+                    <label>Email</label>
                     {{ form.email }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_objetivo">¿Por qué quieres entrar al programa?</label>
+                    <label>¿Por qué quieres entrar al programa?</label>
                     {{ form.objetivo }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_inversion">¿Cuánto dinero tienes para invertir en tu negocio?</label>
+                    <label>¿Cuánto dinero tienes para invertir en tu negocio?</label>
                     {{ form.inversion }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_situacion">Situación actual</label>
+                    <label>Situación actual</label>
                     {{ form.situacion }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_conseguir">¿Qué te gustaría estar consiguiendo en 3 meses?</label>
+                    <label>¿Qué te gustaría estar consiguiendo en 3 meses?</label>
                     {{ form.conseguir }}
                 </div>
 
                 <div class="form-group">
-                    <label for="id_tlf">Número de teléfono</label>
+                    <label>Número de teléfono</label>
                     {{ form.tlf }}
                 </div>
 
-                <button type="submit" class="btn-submit">Enviar aplicación →</button>
+                <button type="submit" class="btn-submit">
+                    Enviar aplicación →
+                </button>
             </form>
 
             <div class="form-footer">
                 Revisamos cada aplicación manualmente · <span>100% confidencial</span>
             </div>
+
         </div>
     </div>
+
 </body>
 </html>
