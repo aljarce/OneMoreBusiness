@@ -228,20 +228,6 @@ body::after {
   background: var(--border);
 }
 
-.video-fallback {
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-  color: var(--green);
-  font-size: 0.82rem;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-}
-
-.video-fallback:hover {
-  text-decoration: underline;
-}
-
 /* Container / Form */
 .container {
   position: relative;
